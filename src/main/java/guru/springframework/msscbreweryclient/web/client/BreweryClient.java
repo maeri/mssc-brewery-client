@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -16,11 +17,15 @@ import org.springframework.web.client.RestTemplate;
  */
 @Component
 @ConfigurationProperties(value = "sfg.brewery", ignoreUnknownFields = false)
-@RequiredArgsConstructor
 @Slf4j
 public class BreweryClient {
 
 	private final RestTemplate restTemplate;
+
+	public BreweryClient(RestTemplateBuilder restTemplateBuilder) {
+		this.restTemplate = restTemplateBuilder.build();
+	}
+
 	private final String BEER_PATH_V1 = "/api/v1/beer/";
 
 	public BeerDto getBeerById(UUID uuid) {

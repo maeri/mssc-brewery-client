@@ -34,13 +34,18 @@
 	</appender>
 
 	<!-- LOG everything at INFO level -->
-	<root level="info">
+	<root level="debug">
 		<appender-ref ref="RollingFile" />
 		<appender-ref ref="Console" />
 	</root>
 
 	<!-- LOG "guru.springframework.msscbrewery*" at TRACE level -->
 	<logger name="guru.springframework.msscbeerservice" level="info" additivity="false">
+		<appender-ref ref="RollingFile" />
+		<appender-ref ref="Console" />
+	</logger>
+
+	<logger name="org.apache.http" level="debug" additivity="false">
 		<appender-ref ref="RollingFile" />
 		<appender-ref ref="Console" />
 	</logger>
