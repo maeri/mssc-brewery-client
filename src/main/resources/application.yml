@@ -1,2 +1,6 @@
 server:
   port: 8090
+
+sfg:
+  brewery:
+    apihost: http://localhost:8080
